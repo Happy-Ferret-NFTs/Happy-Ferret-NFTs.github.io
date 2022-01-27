@@ -1,5 +1,6 @@
 //Countdown Timer
 const clockdiv = document.getElementById("countdown");
+const comingSoon = document.getElementsByClassName("comingSoon")
 const countDownTime = new Date(
   clockdiv.getAttribute("data-date")
 ).getTime();
@@ -13,9 +14,17 @@ const countdownfunction = setInterval(function () {
   const seconds = Math.floor(diff % (1000 * 60) / 1000);
 
   if (diff < 0) {
-    clockdiv.style.display = "none";
+    for(var i=0, len=comingSoon.length; i<len; i++)
+    {
+        comingSoon[i].style.display = "none";
+    }
     clearInterval(countdownfunction);
   } else {
+    for(var i=0, len=comingSoon.length; i<len; i++)
+    {
+        comingSoon[i].style.cssText = 'display:flex !important';
+    }
+    clockdiv.style.display = "flex";
     clockdiv.querySelector(".days").innerHTML = days;
     clockdiv.querySelector(".hours").innerHTML = hours;
     clockdiv.querySelector(".minutes").innerHTML = minutes;
